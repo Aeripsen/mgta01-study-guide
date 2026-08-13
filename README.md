@@ -1,39 +1,64 @@
-# MGTA01 final exam notes
+# MGTA01 study guide
 
-A single-page study guide for **MGTA01H3, Introduction to Business** (UTSC, Summer 2026).
+A complete single-page study platform for **MGTA01H3, Introduction to Business** (University of
+Toronto Scarborough, Summer 2026).
 
-**Live page:** see the GitHub Pages link in the repository description.
+**Live:** https://aeripsen.github.io/mgta01-study-guide/
 
-## What this is
+Written for the final exam: **Thursday August 13, 2 to 4pm, HL-170.** Two sections of 20 marks,
+multiple choice and short answer, two hours, cumulative over ten lectures.
 
-Ten lectures compressed into one page, arranged in the order the course builds them, with a memory
-hook on every unit, diagrams for the things worth drawing, ten practice multiple choice questions
-with explained answers, and a worked case study showing how the short answer half is marked.
+## The idea
 
-Exam it was written for: **Thursday August 13, 2 to 4pm, HL-170.** Two sections of 20 marks,
-multiple choice and short answer, two hours, cumulative.
+The page is built in **two deliberately separate layers**.
+
+**Orange boxes are for memorising.** Every one is a list the course states and numbers explicitly,
+with the item count shown so you know when you have them all. Each box can be covered so you can
+recite it back. There are 53 of them.
+
+**Everything else is for understanding.** Prose, diagrams and definitions exist so the lists make
+sense and so you have something to say in the short answer section, which is explicitly about
+applying the course to case studies.
+
+A **Full / Memorise only** switch at the top hides all the prose and leaves just the boxes, for the
+last pass before the exam.
+
+## What is in it
+
+| | |
+|---|---|
+| Units | 10, in the order the course builds them |
+| Memorise boxes | 53, one per itemised list |
+| Diagrams | 13 hand-drawn SVGs, theme-aware |
+| Glossary | 153 terms, searchable, generated from the page so it cannot drift |
+| Flashcards | 51 decks, generated from the memorise boxes, filterable by unit, shuffleable |
+| Practice exam | 30 scored multiple choice with explanations, plus 3 worked case studies |
+
+Flashcards and the glossary are both **generated at runtime from the page content itself**, so they
+can never fall out of sync with the notes.
 
 ## What it is not
 
-**These are original study notes, not course material.** Nothing here reproduces the lecture slides,
-which are the instructor's copyrighted work and are deliberately not included in this repository.
-The concepts covered are standard introduction-to-business material found in any textbook on the
-subject. The wording, groupings, mnemonics, diagrams, practice questions and worked examples are all
-original.
+**These are independent revision notes, not course material.** They are not endorsed by the
+instructor or the university and reproduce no lecture slides, which are the instructor's copyrighted
+work and are excluded from this repository by `.gitignore`. The concepts are standard
+introduction-to-business material; the wording, groupings, mnemonics, diagrams and practice questions
+are original.
 
-Verify anything that matters against your own lecture notes and the textbook before relying on it.
+The exam also names **textbook chapters 1 to 10**. Anything appearing only in the textbook and never
+in a lecture will not be found here. Check everything that matters against your own notes.
 
-## Structure
+## Running it
 
 ```
-site/
-  index.html   the whole thing, one self-contained file, no build step and no dependencies
+site/index.html
 ```
 
-Open `index.html` in any browser, or serve the folder:
+One self-contained file. No build step, no dependencies, no network requests. Open it directly, or
+serve the folder:
 
 ```
 python -m http.server 8000
 ```
 
-The page is responsive and follows your system light or dark theme.
+Responsive, follows your system light or dark theme, and prints cleanly.
