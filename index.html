@@ -1,0 +1,1289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="One-page study guide for MGTA01H3 Introduction to Business: every definition, framework and diagram from the ten lectures, with memory hooks and practice questions.">
+<title>The Business Ledger</title>
+<style>
+:root{
+  --ground:#FBFAF7; --surface:#FFFFFF; --surface-2:#F4F2ED;
+  --ink:#16211F; --ink-soft:#4A5754; --ink-faint:#7C8783;
+  --rule:#DDE3E0; --rule-soft:#EBEEEC;
+  --accent:#0B5D51; --accent-soft:#E3F0EC; --accent-line:#9CC9BF;
+  --mark:#B4600E; --mark-soft:#FBEEDC; --mark-line:#E2B478;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0F1614; --surface:#161F1D; --surface-2:#1C2624;
+    --ink:#E8EEEB; --ink-soft:#AAB6B2; --ink-faint:#7A8683;
+    --rule:#2A3634; --rule-soft:#222C2A;
+    --accent:#4FBFA8; --accent-soft:#16302B; --accent-line:#2F6B60;
+    --mark:#E0A354; --mark-soft:#33240F; --mark-line:#6D4E1F;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F1614; --surface:#161F1D; --surface-2:#1C2624;
+  --ink:#E8EEEB; --ink-soft:#AAB6B2; --ink-faint:#7A8683;
+  --rule:#2A3634; --rule-soft:#222C2A;
+  --accent:#4FBFA8; --accent-soft:#16302B; --accent-line:#2F6B60;
+  --mark:#E0A354; --mark-soft:#33240F; --mark-line:#6D4E1F;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--sans); font-size:17px; line-height:1.62;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) 5rem}
+.col{max-width:64ch}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.4rem,6vw,4rem);line-height:1.04;letter-spacing:-.015em}
+h2{font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.15;margin:0 0 .5rem}
+h3{font-size:1.2rem;margin:1.75rem 0 .4rem}
+h4{font-size:1rem;font-family:var(--sans);font-weight:700;margin:0 0 .3rem}
+p{margin:0 0 1rem}
+a{color:var(--accent)}
+.lbl{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+
+/* ---------- masthead ---------- */
+.mast{border-bottom:1px solid var(--rule);margin-bottom:2.5rem}
+.mast-in{max-width:1080px;margin:0 auto;padding:clamp(2.5rem,7vw,5rem) clamp(1rem,4vw,2.5rem) 2.5rem}
+.mast h1{margin:.6rem 0 1.2rem}
+.mast h1 em{font-style:normal;color:var(--accent)}
+.stand{font-size:1.12rem;color:var(--ink-soft);max-width:56ch}
+.vitals{
+  display:flex;flex-wrap:wrap;gap:0;margin-top:2rem;
+  border-top:1px solid var(--rule);
+}
+.vital{
+  flex:1 1 8rem;padding:.9rem 1rem .9rem 0;border-right:1px solid var(--rule-soft);
+}
+.vital:last-child{border-right:0}
+.vital b{display:block;font-family:var(--mono);font-size:1.15rem;font-variant-numeric:tabular-nums}
+.vital span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-faint);margin-top:.15rem}
+
+/* ---------- nav ---------- */
+.jump{
+  position:sticky;top:0;z-index:20;background:var(--ground);
+  border-bottom:1px solid var(--rule);margin-bottom:3rem;
+}
+.jump-in{max-width:1080px;margin:0 auto;padding:.55rem clamp(1rem,4vw,2.5rem);
+  display:flex;gap:.3rem;overflow-x:auto;scrollbar-width:thin}
+.jump a{
+  flex:0 0 auto;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;
+  padding:.32rem .55rem;border-radius:3px;color:var(--ink-soft);text-decoration:none;
+  white-space:nowrap;border:1px solid transparent;
+}
+.jump a:hover,.jump a:focus-visible{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)}
+
+/* ---------- callouts ---------- */
+.note{
+  border-left:3px solid var(--accent);background:var(--accent-soft);
+  padding:1rem 1.2rem;margin:1.75rem 0;border-radius:0 4px 4px 0;
+}
+.note.warn{border-left-color:var(--mark);background:var(--mark-soft)}
+.note .lbl{color:var(--accent);margin-bottom:.3rem;display:block}
+.note.warn .lbl{color:var(--mark)}
+.note p:last-child{margin-bottom:0}
+
+/* ---------- unit ---------- */
+.unit{
+  display:grid;grid-template-columns:3.5rem 1fr;gap:0 1.5rem;
+  padding:2.5rem 0;border-top:1px solid var(--rule);
+}
+.unit-n{
+  font-family:var(--mono);font-size:.78rem;color:var(--ink-faint);
+  font-variant-numeric:tabular-nums;padding-top:.55rem;
+}
+.unit-n b{display:block;font-size:1.5rem;color:var(--accent);font-weight:400;line-height:1}
+.unit-body{min-width:0}
+.oneidea{
+  font-family:var(--serif);font-size:1.16rem;line-height:1.45;color:var(--ink-soft);
+  margin:.5rem 0 1.2rem;
+}
+
+/* ---------- definitions ---------- */
+.defs{display:grid;gap:0;margin:1.2rem 0;border-top:1px solid var(--rule-soft)}
+.def{
+  display:grid;grid-template-columns:minmax(9rem,13rem) 1fr;gap:.2rem 1.2rem;
+  padding:.6rem 0;border-bottom:1px solid var(--rule-soft);
+}
+.def dt{font-family:var(--mono);font-size:.82rem;color:var(--accent);padding-top:.12rem}
+.def dd{margin:0;font-size:.95rem;color:var(--ink-soft)}
+@media(max-width:560px){.def{grid-template-columns:1fr}}
+
+/* ---------- memory hook ---------- */
+.hook{
+  border:1px solid var(--mark-line);background:var(--mark-soft);
+  border-radius:4px;padding:.9rem 1.1rem;margin:1.4rem 0;
+}
+.hook .lbl{color:var(--mark);display:block;margin-bottom:.4rem}
+.hook p{margin:0;font-size:.95rem}
+.key{
+  font-family:var(--mono);font-weight:700;font-size:1.5rem;letter-spacing:.16em;
+  color:var(--mark);display:block;margin:.1rem 0 .5rem;
+}
+.expand{display:grid;gap:.15rem;margin-top:.5rem;font-size:.9rem}
+.expand div{display:grid;grid-template-columns:1.6rem 1fr;gap:.6rem}
+.expand span{font-family:var(--mono);font-weight:700;color:var(--mark)}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;margin:1.4rem 0;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:30rem}
+th{
+  text-align:left;font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-faint);font-weight:400;
+  padding:.5rem .7rem .5rem 0;border-bottom:1px solid var(--rule);vertical-align:bottom;
+}
+td{color:var(--ink);padding:.55rem .7rem .55rem 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+td:first-child,th:first-child{padding-left:0}
+tbody tr:hover{background:var(--surface-2)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.hi{color:var(--accent);font-weight:600}
+
+/* ---------- figures ---------- */
+figure{margin:1.8rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto}
+figcaption{
+  font-family:var(--mono);font-size:.7rem;color:var(--ink-faint);
+  margin-top:.6rem;line-height:1.5;
+}
+.plot{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:1.1rem}
+
+/* ---------- spectrum ---------- */
+.spectrum{display:grid;gap:.4rem;margin:1.4rem 0}
+.sp-bar{display:flex;gap:2px}
+.sp-bar div{
+  flex:1;padding:.6rem .5rem;background:var(--surface-2);border:1px solid var(--rule);
+  text-align:center;font-size:.82rem;
+}
+.sp-bar div:first-child{border-radius:4px 0 0 4px}
+.sp-bar div:last-child{border-radius:0 4px 4px 0}
+.sp-bar b{display:block;font-family:var(--mono);font-size:.68rem;color:var(--accent);
+  letter-spacing:.06em;text-transform:uppercase;margin-bottom:.15rem}
+.sp-ends{display:flex;justify-content:space-between;font-family:var(--mono);
+  font-size:.68rem;color:var(--ink-faint);letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- drill ---------- */
+details.q{
+  border:1px solid var(--rule);border-radius:4px;background:var(--surface);
+  padding:.75rem 1rem;margin:.5rem 0;
+}
+details.q[open]{border-color:var(--accent-line)}
+details.q summary{cursor:pointer;font-weight:600;font-size:.95rem;list-style:none}
+details.q summary::-webkit-details-marker{display:none}
+details.q summary::before{
+  content:"+";font-family:var(--mono);color:var(--accent);
+  margin-right:.6rem;font-weight:700;
+}
+details.q[open] summary::before{content:"\2212"}
+details.q > :not(summary){margin-top:.7rem;font-size:.93rem;color:var(--ink-soft)}
+details.q p:last-child{margin-bottom:0}
+.opts{list-style:none;padding:0;margin:.6rem 0 0;display:grid;gap:.25rem;font-size:.93rem}
+.opts li{padding-left:1.6rem;position:relative}
+.opts li::before{
+  content:attr(data-k);position:absolute;left:0;font-family:var(--mono);
+  color:var(--ink-faint);font-size:.85rem;
+}
+.right{color:var(--accent);font-weight:600}
+
+/* ---------- misc ---------- */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;margin:1.4rem 0}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:1rem 1.1rem}
+.card h4{color:var(--accent)}
+.card p{font-size:.92rem;color:var(--ink-soft);margin:0}
+.eq{
+  font-family:var(--mono);font-size:1.05rem;background:var(--surface-2);
+  border:1px solid var(--rule);border-radius:4px;padding:.8rem 1rem;margin:1.2rem 0;
+  overflow-x:auto;
+}
+hr{border:0;border-top:1px solid var(--rule);margin:3rem 0}
+ul.tight{margin:.5rem 0 1rem;padding-left:1.15rem}
+ul.tight li{margin:.22rem 0}
+footer{border-top:1px solid var(--rule);margin-top:3rem;padding-top:1.5rem;
+  font-size:.85rem;color:var(--ink-faint)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:600px){
+  .unit{grid-template-columns:1fr;gap:0}
+  .unit-n{padding-top:0;margin-bottom:.4rem;display:flex;align-items:baseline;gap:.5rem}
+  .unit-n b{display:inline}
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+<div class="mast-in">
+  <span class="lbl">MGTA01H3 &middot; Introduction to Business &middot; Final exam</span>
+  <h1>Ten lectures,<br>one <em>ledger</em>.</h1>
+  <p class="stand">Every definition, framework and diagram from the course, arranged in the order
+  the course actually builds them, with a memory hook on each unit. Written to be read once and
+  recalled cold.</p>
+  <div class="vitals">
+    <div class="vital"><b>Aug 13</b><span>Thursday</span></div>
+    <div class="vital"><b>2&ndash;4pm</b><span>2 hours</span></div>
+    <div class="vital"><b>HL-170</b><span>Room</span></div>
+    <div class="vital"><b>40</b><span>Marks</span></div>
+    <div class="vital"><b>40%</b><span>Of grade</span></div>
+    <div class="vital"><b>1&ndash;10</b><span>Cumulative</span></div>
+  </div>
+</div>
+</header>
+
+<nav class="jump"><div class="jump-in">
+  <a href="#read">Read this first</a>
+  <a href="#u1">1 Business</a>
+  <a href="#u2">2 Products</a>
+  <a href="#u3">3 Factors</a>
+  <a href="#u4">4 Economies</a>
+  <a href="#u5">5 Markets</a>
+  <a href="#u6">6 Measuring</a>
+  <a href="#u7">7 Entrepreneurs</a>
+  <a href="#u8">8 Planning</a>
+  <a href="#u9">9 Structures</a>
+  <a href="#u10">10 Financing</a>
+  <a href="#hooks">All hooks</a>
+  <a href="#drill">Drill</a>
+</div></nav>
+
+<div class="wrap">
+
+<section id="read" class="col">
+<h2>Read this first</h2>
+
+<p>The exam is <strong>two sections of 20 marks</strong>. One is multiple choice. One is short
+answer, bullet points only, built around applying the course to case studies.</p>
+
+<div class="note warn">
+  <span class="lbl">The thing worth knowing before you start</span>
+  <p><strong>Only about half of this is memorisation.</strong> The MC section rewards knowing
+  definitions cold. The short answer section is explicitly about <em>application to cases</em>, and
+  the marks there go to naming the right concept, applying it to the specific business in front of
+  you, and reaching a defensible conclusion. Reciting a definition into a case question scores
+  roughly half of what it could.</p>
+  <p>So: memorise the definitions, then practise pointing them at a company.</p>
+</div>
+
+<p>The course has one spine, repeated in almost every lecture. Hold it and most of the material
+hangs off it:</p>
+
+<div class="eq">satisfy customers &rarr; to make a profit &rarr; to keep satisfying customers</div>
+
+<p>And one equation, which is the definition of a business rather than an accounting detail:</p>
+
+<div class="eq">PROFIT = REVENUE &minus; EXPENSES&nbsp;&nbsp;&nbsp;(negative result = LOSS)</div>
+
+<p>The ten units below are not ten topics. They are one argument in order: what a business is, what
+it sells, what it is made of, who owns those parts, how it competes, how we measure the whole
+system, who starts one, how they plan it, what legal shape it takes, and how they pay for it.</p>
+
+<div class="note">
+  <span class="lbl">One ambiguity in the stated scope, resolved the safe way</span>
+  <p>The exam slide says the content is <em>lectures 1 to 10</em>. But class 6 was the midterm, not a
+  lecture, so the ten lectures actually delivered were classes
+  <strong>1, 2, 3, 4, 5, 7, 8, 9, 10 and 11</strong>. That makes
+  <strong>Financing the Business the tenth lecture</strong>, and it is included here as unit 10.
+  Class 12 was the guest speaker session, which carried a 2% attendance bonus rather than examinable
+  content.</p>
+  <p>If the wording instead meant classes numbered 1 to 10, Financing would be out. Covering it costs
+  you twenty minutes and removes the risk, so cover it.</p>
+</div>
+
+<p class="col" style="color:var(--ink-soft);font-size:.95rem">For calibration: the midterm class
+average was <strong>77%</strong> and the top mark was 98%, on the same two-section format at half the
+length. This is a paper people do well on when they have the definitions cold.</p>
+</section>
+
+<hr>
+
+<!-- ============ UNIT 1 ============ -->
+<section class="unit" id="u1">
+<div class="unit-n"><b>01</b>Business</div>
+<div class="unit-body">
+<h2>What a business actually is</h2>
+<p class="oneidea">An organisation is any group working toward a shared goal. A business is the
+subset of organisations that intends to make a profit. The intent is the whole distinction.</p>
+
+<dl class="defs">
+<div class="def"><dt>Organization</dt><dd>A group of people working together to meet a need or pursue common goals. A family, a soccer team, a campus club.</dd></div>
+<div class="def"><dt>Business</dt><dd>An organised effort to provide things people need and want and will pay for, in order to satisfy those needs <em>and</em> make a profit.</dd></div>
+<div class="def"><dt>Profit motive</dt><dd>The idea that people give up time, energy and money to start a business only if they can realise some benefit from doing so.</dd></div>
+<div class="def"><dt>Not-for-profit</dt><dd>Provides things people need, may collect revenue, but is not intended to make a profit. A surplus is retained to run the organisation, not paid to an owner.</dd></div>
+<div class="def"><dt>Revenue</dt><dd>Money flowing in each time a product or service is sold.</dd></div>
+<div class="def"><dt>Expenses</dt><dd>The costs incurred in the effort to generate that revenue.</dd></div>
+</dl>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; the six characteristics</span>
+  <p>Do not memorise six bullets. Memorise one sentence that runs in order, because the six
+  characteristics are a sequence, not a list:</p>
+  <p style="margin-top:.6rem"><strong>You <span style="color:var(--mark)">organise</span> effort to
+  provide what people <span style="color:var(--mark)">need</span>, you must
+  <span style="color:var(--mark)">satisfy</span> customers, which earns
+  <span style="color:var(--mark)">revenue</span>, against which you pay
+  <span style="color:var(--mark)">expenses</span>, and what is left is
+  <span style="color:var(--mark)">profit</span>.</strong></p>
+</div>
+
+<h3>The argument about whether profit is good</h3>
+<p>Two named thinkers, and the exam expects you to be able to attribute the position, not just
+describe it.</p>
+
+<div class="grid2">
+  <div class="card">
+    <h4>Karl Marx &middot; profit is exploitation</h4>
+    <p>Owners (capitalists) grow wealthy by exploiting the labour of workers (labourers). If a
+    worker is paid $10 an hour and the owner clears $40 from what they made, the gap is extracted
+    value. Leads to communism: the state should own business activity so no one grows rich off
+    another's labour.</p>
+  </div>
+  <div class="card">
+    <h4>Adam Smith &middot; profit is fair reward for risk</h4>
+    <p>Rational people only commit time, energy and money where there is reward for the risk. The
+    surplus is not greed, it buys equipment, maintenance and marketing, and it creates the jobs in
+    the first place. Leads to liberalism: leave people to their self-interest with minimum
+    government interference, and society gains most.</p>
+  </div>
+</div>
+
+<p><strong>The risk is real, and the numbers are the point.</strong> Canada is among the easiest
+places on earth to start a business, and Canadian entrepreneurs create roughly 140,000 businesses a
+year. In the same period roughly 120,000 close. Amazon lost around $3 billion over eight years
+before its first profit. Easy to start, very hard to keep.</p>
+</div>
+</section>
+
+<!-- ============ UNIT 2 ============ -->
+<section class="unit" id="u2">
+<div class="unit-n"><b>02</b>Products</div>
+<div class="unit-body">
+<h2>What a business sells</h2>
+<p class="oneidea">A product is whatever the buyer believes they are getting. It splits into goods
+and services, and every difference between them traces back to one fact: a good is a thing, a
+service is an event.</p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Characteristic</th><th>Goods</th><th>Services</th></tr></thead>
+<tbody>
+<tr><td>Tangibility</td><td>Tangible, can be seen and touched</td><td class="hi">Intangible, experienced only</td></tr>
+<tr><td>Consistency</td><td>Invariable, easy to standardise</td><td class="hi">Variable, hard to standardise</td></tr>
+<tr><td>Storage</td><td>Separable, can be stored as inventory</td><td class="hi">Inseparable and perishable, cannot be stored</td></tr>
+<tr><td>How it exists</td><td>Produced or manufactured</td><td class="hi">Performed</td></tr>
+<tr><td>Customer contact</td><td>May or may not require interaction</td><td class="hi">Always requires some interaction</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; services</span>
+  <span class="key">IHIP</span>
+  <div class="expand">
+    <div><span>I</span><div><strong>Intangible</strong> &mdash; you cannot touch it before buying</div></div>
+    <div><span>H</span><div><strong>Heterogeneous</strong> &mdash; variable, no two deliveries identical</div></div>
+    <div><span>I</span><div><strong>Inseparable</strong> &mdash; produced and consumed at the same moment</div></div>
+    <div><span>P</span><div><strong>Perishable</strong> &mdash; an empty seat tonight cannot be sold tomorrow</div></div>
+  </div>
+  <p style="margin-top:.7rem">Goods are the opposite of all four. Learn the service side and invert
+  it. Services are over 75% of the Canadian economy and growing.</p>
+</div>
+
+<h3>The value package</h3>
+<div class="eq">FUNCTION + FEATURES + BENEFITS = VALUE</div>
+<p>Function is what it is meant to do. A feature is an extra attribute improving usefulness. A
+benefit is the advantage the buyer derives. This matters because raising revenue means raising price
+or volume, and both require raising value, real or perceived.</p>
+
+<h3>Three kinds of consumer product</h3>
+<div class="spectrum">
+<div class="sp-bar">
+  <div><b>Convenience</b>Cheap, frequent, no thought. Milk, gum.</div>
+  <div><b>Shopping</b>Moderately expensive, infrequent, comparison shopping. Appliances.</div>
+  <div><b>Specialty</b>High importance, significant time and effort to find exactly the right one. A wedding dress.</div>
+</div>
+<div class="sp-ends"><span>Less effort per purchase</span><span>More effort</span></div>
+</div>
+<p>Separately, <strong>B2C</strong> products go to the end user, <strong>B2B</strong> (industrial)
+products are the parts, materials and supplies one business buys from another. Plenty of things are
+both.</p>
+
+<h3>The product life cycle</h3>
+
+<figure>
+<div class="plot">
+<svg viewBox="0 0 700 300" role="img" aria-label="Product life cycle curve with sales rising through introduction and growth, peaking at maturity, then declining, with a profit curve lagging behind">
+  <g stroke="var(--rule)" stroke-width="1">
+    <line x1="60" y1="250" x2="670" y2="250"/><line x1="60" y1="20" x2="60" y2="250"/>
+  </g>
+  <g stroke="var(--rule-soft)" stroke-width="1">
+    <line x1="212" y1="20" x2="212" y2="250"/><line x1="364" y1="20" x2="364" y2="250"/>
+    <line x1="516" y1="20" x2="516" y2="250"/>
+  </g>
+  <path d="M60 246 C 130 244, 175 232, 212 210 S 300 80, 364 62 S 470 52, 516 66 S 610 150, 670 214"
+        fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+  <path d="M60 250 C 130 258, 175 268, 212 262 S 300 140, 364 96 S 470 84, 516 104 S 610 190, 670 240"
+        fill="none" stroke="var(--mark)" stroke-width="2" stroke-dasharray="5 4"/>
+  <g font-family="var(--mono)" font-size="11" fill="var(--ink-faint)">
+    <text x="118" y="272">INTRODUCTION</text><text x="262" y="272">GROWTH</text>
+    <text x="418" y="272">MATURITY</text><text x="570" y="272">DECLINE</text>
+    <text x="26" y="30" >$</text>
+  </g>
+  <g font-family="var(--mono)" font-size="11">
+    <text x="376" y="46" fill="var(--accent)">sales</text>
+    <text x="376" y="126" fill="var(--mark)">profit</text>
+  </g>
+</svg>
+</div>
+<figcaption>Profit lags sales. A product is losing money through introduction, first turns a profit
+in growth, and profit peaks in maturity, not at the sales peak.</figcaption>
+</figure>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Stage</th><th>Buyers</th><th>Price</th><th>Marketing spend</th><th>Profit</th></tr></thead>
+<tbody>
+<tr><td><strong>Introduction</strong></td><td>Small, early adopters, high perceived risk</td><td>High, low volume</td><td>High, educating the market</td><td>Negative</td></tr>
+<tr><td><strong>Growth</strong></td><td>Expanding rapidly, trial and accessibility</td><td>Falling, economies of scale</td><td>Still significant</td><td class="hi">First profit</td></tr>
+<tr><td><strong>Maturity</strong></td><td>Slowing, market saturation</td><td>Competitive</td><td>Lower, awareness already high</td><td class="hi">Highest</td></tr>
+<tr><td><strong>Decline</strong></td><td>Falling, needs moved on</td><td>Low, chasing remaining demand</td><td>Minimal</td><td>Falling</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; the cycle</span>
+  <span class="key">I G M D</span>
+  <p><strong>I</strong>ntroduction, <strong>G</strong>rowth, <strong>M</strong>aturity,
+  <strong>D</strong>ecline. Two numbers worth carrying: <strong>80%</strong> of new products fail in
+  the introduction stage, and <strong>saturation</strong> is the word for a market that can absorb no
+  more. An <strong>extension</strong> is any effort to repackage, relaunch or update a mature but
+  well-known product to stretch the curve.</p>
+</div>
+</div>
+</section>
+
+<!-- ============ UNIT 3 ============ -->
+<section class="unit" id="u3">
+<div class="unit-n"><b>03</b>Factors</div>
+<div class="unit-body">
+<h2>What a business is made of</h2>
+<p class="oneidea">Four building blocks combine to create any business. Three of them are inputs.
+The fourth, entrepreneurship, is the thing that assembles the other three.</p>
+
+<figure>
+<div class="plot">
+<svg viewBox="0 0 700 210" role="img" aria-label="Three factors of production feeding into entrepreneurship, which produces goods and services">
+  <g font-family="var(--mono)" font-size="12">
+    <g fill="var(--accent-soft)" stroke="var(--accent-line)">
+      <rect x="20" y="20" width="150" height="42" rx="4"/>
+      <rect x="20" y="82" width="150" height="42" rx="4"/>
+      <rect x="20" y="144" width="150" height="42" rx="4"/>
+    </g>
+    <g fill="var(--accent)">
+      <text x="40" y="46">NATURAL RESOURCES</text>
+      <text x="72" y="108">LABOUR</text>
+      <text x="70" y="170">CAPITAL</text>
+    </g>
+    <g stroke="var(--ink-faint)" stroke-width="1.5" fill="none">
+      <path d="M170 41 L 250 41 L 250 103 L 285 103"/>
+      <path d="M170 103 L 285 103"/>
+      <path d="M170 165 L 250 165 L 250 103 L 285 103"/>
+      <path d="M470 103 L 545 103"/>
+    </g>
+    <rect x="285" y="72" width="185" height="62" rx="4" fill="var(--mark-soft)" stroke="var(--mark-line)"/>
+    <text x="310" y="98" fill="var(--mark)" font-weight="700">ENTREPRENEURSHIP</text>
+    <text x="315" y="118" fill="var(--mark)" font-size="10">assembles and organises</text>
+    <rect x="545" y="82" width="135" height="42" rx="4" fill="var(--surface-2)" stroke="var(--rule)"/>
+    <text x="562" y="108" fill="var(--ink)">GOODS &amp; SERVICES</text>
+  </g>
+</svg>
+</div>
+<figcaption>Without the fourth factor the other three exist but lack the organising influence that
+turns them into a business. That is the whole point of the diagram.</figcaption>
+</figure>
+
+<dl class="defs">
+<div class="def"><dt>Natural resources</dt><dd>Things found in nature, grown from or extracted from the earth. Land, water, wood, oil, wheat.</dd></div>
+<div class="def"><dt>Labour</dt><dd>The people who contribute their efforts. No business exists without at least one worker.</dd></div>
+<div class="def"><dt>Capital</dt><dd>Money, or the machines and technologies money can buy.</dd></div>
+<div class="def"><dt>Entrepreneurship</dt><dd>The willingness to take initiative and accept the risk of failure in return for suitable reward.</dd></div>
+<div class="def"><dt>Factor substitution</dt><dd>Replacing one factor with another so products can be made faster or cheaper. Self-checkouts replacing cashiers, ATMs replacing tellers.</dd></div>
+<div class="def"><dt>Factor intensity</dt><dd>All businesses need all factors, but one usually dominates. Farming is resource intensive, Walmart labour intensive, auto parts capital intensive, Meta information intensive.</dd></div>
+</dl>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; the four factors</span>
+  <span class="key">CELL</span>
+  <div class="expand">
+    <div><span>C</span><div><strong>Capital</strong></div></div>
+    <div><span>E</span><div><strong>Entrepreneurship</strong></div></div>
+    <div><span>L</span><div><strong>Land</strong>, meaning natural resources</div></div>
+    <div><span>L</span><div><strong>Labour</strong></div></div>
+  </div>
+  <p style="margin-top:.7rem">A business is a <em>cell</em> built from four parts. If the course adds
+  <strong>information</strong> as a proposed fifth factor, remember it is presented as a
+  <em>theory</em>, not settled fact.</p>
+</div>
+
+<h3>Three revolutions</h3>
+<div class="scroll">
+<table>
+<thead><tr><th>Revolution</th><th>When</th><th>What it shifted</th></tr></thead>
+<tbody>
+<tr><td><strong>Agricultural</strong></td><td>~10&ndash;12,000 years ago</td><td>Nomadic life to settled life</td></tr>
+<tr><td><strong>Industrial</strong></td><td>18th&ndash;19th centuries</td><td>Mechanical labour-saving inventions made <span class="hi">capital more important than labour</span>. Cotton textile costs fell 90%, labour needed fell 80%. Work moved from homes into the factory system.</td></tr>
+<tr><td><strong>Information</strong></td><td>20th&ndash;21st centuries</td><td>Computing and information technology. Presented as a theory still in progress.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+<!-- ============ UNIT 4 ============ -->
+<section class="unit" id="u4">
+<div class="unit-n"><b>04</b>Economies</div>
+<div class="unit-body">
+<h2>Who owns the factors</h2>
+<p class="oneidea">An economic system answers four questions: who owns the factors, who controls
+them, who decides what gets produced, and who decides how it is distributed. The answer runs on a
+single axis from total state control to total private control.</p>
+
+<figure>
+<div class="plot">
+<svg viewBox="0 0 700 150" role="img" aria-label="Spectrum of economic systems from communism through socialism and mixed market to pure capitalism">
+  <defs><linearGradient id="econ" x1="0" x2="1">
+    <stop offset="0" stop-color="var(--accent)" stop-opacity=".55"/>
+    <stop offset="1" stop-color="var(--mark)" stop-opacity=".55"/>
+  </linearGradient></defs>
+  <rect x="30" y="46" width="640" height="14" rx="7" fill="url(#econ)"/>
+  <g font-family="var(--mono)" font-size="11" fill="var(--ink)" text-anchor="middle">
+    <g stroke="var(--ink-faint)" stroke-width="1">
+      <line x1="90" y1="40" x2="90" y2="66"/><line x1="250" y1="40" x2="250" y2="66"/>
+      <line x1="450" y1="40" x2="450" y2="66"/><line x1="620" y1="40" x2="620" y2="66"/>
+    </g>
+    <text x="90" y="86">COMMUNISM</text><text x="250" y="86">SOCIALISM</text>
+    <text x="450" y="86">MIXED MARKET</text><text x="620" y="86">PURE CAPITALISM</text>
+    <text x="90" y="104" fill="var(--ink-faint)" font-size="10">no private property</text>
+    <text x="250" y="104" fill="var(--ink-faint)" font-size="10">state owns key industry</text>
+    <text x="450" y="104" fill="var(--ink-faint)" font-size="10">private + regulation</text>
+    <text x="620" y="104" fill="var(--ink-faint)" font-size="10">no taxes, no regulation</text>
+    <text x="450" y="128" fill="var(--accent)" font-weight="700">CANADA</text>
+    <text x="620" y="128" fill="var(--mark)">does not exist</text>
+  </g>
+  <g font-family="var(--mono)" font-size="10" fill="var(--ink-faint)">
+    <text x="30" y="32">PLANNED &mdash; state controls</text>
+    <text x="670" y="32" text-anchor="end">MARKET &mdash; individuals control</text>
+  </g>
+</svg>
+</div>
+<figcaption>Two families, two members each. Pure capitalism is the one that has never existed, since
+without rules and taxes society risks anarchy.</figcaption>
+</figure>
+
+<div class="grid2">
+  <div class="card">
+    <h4>Planned &middot; the case for</h4>
+    <p>Only the state has the power to feed, clothe, shelter, educate and employ a population.
+    Businesses only care about profit, the state has a benevolent interest in everyone's welfare.
+    The weakness: central planners work from models, models do not guarantee the right quantities,
+    and bureaucracies are slow to adapt.</p>
+  </div>
+  <div class="card">
+    <h4>Market &middot; the case for</h4>
+    <p>People's needs are too vast for any one entity to plan. Officials are too removed from
+    ordinary needs and lack the information and motivation. Competition keeps enterprise efficient.
+    Power concentrated in few hands tends to corrupt. The weakness: large private firms get
+    bureaucratic too.</p>
+  </div>
+</div>
+
+<h3>Canada is a mixed market economy. The state does three things.</h3>
+<ul class="tight">
+  <li><strong>Imposes and collects taxes.</strong> Personal income tax, which is
+  <em>progressive</em>, meaning a larger percentage from higher earners. Corporate income tax. Sales
+  tax, 13% HST in Ontario. Employment insurance, about 2%.</li>
+  <li><strong>Passes laws regulating business.</strong> Canadian Human Rights Act, Canada Labour
+  Code, Employment Insurance Act, Competition Act (bans misleading advertising), Consumer Packaging
+  and Labelling Act.</li>
+  <li><strong>Provides some goods and services</strong> through <em>crown corporations</em>: CBC,
+  Canada Post, LCBO, Hydro One, OLG.</li>
+</ul>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; historical terms</span>
+  <p>Four countries, four words for the same move toward state control, then two words for the move
+  back:</p>
+  <div class="expand" style="margin-top:.5rem">
+    <div><span>RU</span><div><strong>Nationalization</strong> &mdash; state assumes ownership</div></div>
+    <div><span>US</span><div><strong>New Deal</strong> &mdash; 1930s laws to manage the economy</div></div>
+    <div><span>UK</span><div><strong>State-owned enterprise</strong> &mdash; provides goods, seeks no profit</div></div>
+    <div><span>CN</span><div><strong>Great Leap Forward</strong> &mdash; Mao abolished private land ownership</div></div>
+  </div>
+  <p style="margin-top:.6rem">Going back the other way: <strong>perestroika</strong> (the 1980s
+  Soviet reversal) and <strong>privatization</strong> (transferring ownership out of government
+  hands). A <strong>command economy</strong> is a planned economy with more authoritarianism
+  implied.</p>
+</div>
+</div>
+</section>
+
+<!-- ============ UNIT 5 ============ -->
+<section class="unit" id="u5">
+<div class="unit-n"><b>05</b>Markets</div>
+<div class="unit-body">
+<h2>How markets compete</h2>
+<p class="oneidea">A market is not a place, it is the interaction of buyers and sellers. The single
+variable that defines a market structure is <em>how many sellers there are</em>, because that sets
+both buyer choice and seller pricing power.</p>
+
+<figure>
+<div class="plot">
+<svg viewBox="0 0 700 190" role="img" aria-label="Four market structures ordered by number of sellers from many to one">
+  <g font-family="var(--mono)" font-size="11">
+    <g fill="var(--surface-2)" stroke="var(--rule)">
+      <rect x="20" y="30" width="155" height="90" rx="4"/>
+      <rect x="185" y="30" width="155" height="90" rx="4"/>
+      <rect x="350" y="30" width="155" height="90" rx="4"/>
+      <rect x="515" y="30" width="155" height="90" rx="4"/>
+    </g>
+    <g fill="var(--accent)" font-weight="700" font-size="11.5">
+      <text x="34" y="52">PERFECT</text><text x="34" y="66">COMPETITION</text>
+      <text x="199" y="52">MONOPOLISTIC</text><text x="199" y="66">COMPETITION</text>
+      <text x="364" y="52">OLIGOPOLY</text>
+      <text x="529" y="52">MONOPOLY</text>
+    </g>
+    <g fill="var(--ink-soft)" font-size="10">
+      <text x="34" y="88">very many sellers</text><text x="34" y="102">identical products</text>
+      <text x="199" y="88">many sellers, a few</text><text x="199" y="102">big and branded</text>
+      <text x="364" y="88">3 to 5 large sellers</text><text x="364" y="102">high barriers to entry</text>
+      <text x="529" y="88">one seller</text><text x="529" y="102">100% market share</text>
+    </g>
+    <g fill="var(--ink-faint)" font-size="10">
+      <text x="34" y="142">farm produce</text><text x="199" y="142">Starbucks, Nike</text>
+      <text x="364" y="142">airlines, banks</text><text x="529" y="142">LCBO, NHL</text>
+    </g>
+  </g>
+  <g stroke="var(--rule)"><line x1="20" y1="162" x2="670" y2="162"/></g>
+  <g font-family="var(--mono)" font-size="10" fill="var(--ink-faint)">
+    <text x="20" y="180">MANY SELLERS &middot; high competition &middot; no pricing power</text>
+    <text x="670" y="180" text-anchor="end">ONE SELLER &middot; no competition &middot; sets its own price</text>
+  </g>
+</svg>
+</div>
+<figcaption>Monopolistic competition sits second because it is a hybrid: the many small sellers of
+perfect competition, plus a handful of large branded ones behaving like an oligopoly.</figcaption>
+</figure>
+
+<dl class="defs">
+<div class="def"><dt>Market</dt><dd>The interactions of buyers and sellers exchanging information about products for sale. An abstract idea, not a physical place.</dd></div>
+<div class="def"><dt>Target market</dt><dd>A group sharing similarities (age, gender, income, ethnicity, location) with similar needs, identified by the seller as most likely to buy.</dd></div>
+<div class="def"><dt>Market share</dt><dd>One firm's sales as a percentage of total sales in that market.</dd></div>
+<div class="def"><dt>Barriers to entry</dt><dd>What makes an industry difficult, slow or expensive to enter. Technology, scale, capital intensity, government regulation.</dd></div>
+<div class="def"><dt>Barriers to exit</dt><dd>What makes it difficult to leave. Contracts, large investment, specialised equipment.</dd></div>
+<div class="def"><dt>Differentiation</dt><dd>Convincing customers your product is different or better than competitors'.</dd></div>
+<div class="def"><dt>Branding</dt><dd>Getting customers to recognise name, logo, colours and slogan, and so differentiate you.</dd></div>
+</dl>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; two kinds of monopoly</span>
+  <p><strong>Natural</strong> monopoly wins by <em>economics</em>: size, efficiency or exclusive
+  access makes it permanently cheaper than any rival. <strong>Legislated</strong> monopoly wins by
+  <em>law</em>: the government granted the exclusive right. LCBO is legislated. The distinction is a
+  clean multiple choice question, so learn which word means which.</p>
+</div>
+</div>
+</section>
+
+<!-- ============ UNIT 6 ============ -->
+<section class="unit" id="u6">
+<div class="unit-n"><b>06</b>Measuring</div>
+<div class="unit-body">
+<h2>Measuring the whole economy</h2>
+<p class="oneidea">Six measures, and each one exists because the one before it was incomplete. Learn
+them as a chain of complaints and you cannot mix them up.</p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Measure</th><th>What it captures</th><th>Why the next one exists</th></tr></thead>
+<tbody>
+<tr><td><strong>GDP</strong></td><td class="hi">Size</td><td>Total value of goods and services produced in a country in a year. But size alone says nothing about direction.</td></tr>
+<tr><td><strong>GDP growth</strong></td><td class="hi">Progress</td><td>Percentage change period to period. But a growing economy with a faster growing population is getting poorer per person.</td></tr>
+<tr><td><strong>GDP per capita</strong></td><td class="hi">Prosperity</td><td>GDP divided by population, the wealth of the average citizen. But it does not say what caused it.</td></tr>
+<tr><td><strong>Productivity</strong></td><td class="hi">The cause of prosperity</td><td>Output relative to inputs used. More output from less input is more productive.</td></tr>
+<tr><td><strong>Employment</strong></td><td class="hi">Use of labour</td><td>Whether the system is using its people. But the average can hide the distribution.</td></tr>
+<tr><td><strong>Distribution</strong></td><td class="hi">Equality</td><td>Lorenz curve and Gini coefficient. A high average can hide a few very rich and many poor.</td></tr>
+</tbody>
+</table>
+</div>
+
+<figure>
+<div class="plot">
+<svg viewBox="0 0 700 290" role="img" aria-label="Lorenz curve showing the line of perfect equality and an actual income distribution curve, with areas A and B labelled">
+  <g stroke="var(--rule)" stroke-width="1">
+    <line x1="70" y1="250" x2="600" y2="250"/><line x1="70" y1="30" x2="70" y2="250"/>
+  </g>
+  <line x1="70" y1="250" x2="600" y2="30" stroke="var(--mark)" stroke-width="2.5"/>
+  <path d="M70 250 C 220 246, 350 228, 450 180 S 560 80, 600 30"
+        fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+  <path d="M70 250 L 600 30 C 560 80, 450 180, 450 180 C 350 228, 220 246, 70 250 Z"
+        fill="var(--mark)" opacity=".14"/>
+  <g font-family="var(--mono)" font-size="11" fill="var(--ink-faint)">
+    <text x="300" y="278">% OF POPULATION, POOREST FIRST</text>
+    <text x="18" y="150" transform="rotate(-90 18 150)">% OF INCOME</text>
+  </g>
+  <g font-family="var(--mono)" font-size="12">
+    <text x="330" y="112" fill="var(--mark)" font-weight="700">A</text>
+    <text x="380" y="222" fill="var(--accent)" font-weight="700">B</text>
+    <text x="470" y="96" fill="var(--mark)" font-size="10.5">perfect equality</text>
+    <text x="180" y="222" fill="var(--accent)" font-size="10.5">actual distribution</text>
+  </g>
+</svg>
+</div>
+<figcaption>Gini = A / (A + B). A bigger gap between the two lines means a bigger area A, a Gini
+closer to 1, and more inequality. Norway sits near 0, Brazil and South Africa much higher.</figcaption>
+</figure>
+
+<div class="note">
+  <span class="lbl">The instructor said this outright</span>
+  <p>You will not have to calculate a Gini coefficient. You do need to understand its
+  <em>relative meaning</em>: <strong>0 is perfect equality, 1 is extreme inequality</strong>, and
+  therefore closer to 0 is more equal. Learn the direction, skip the arithmetic.</p>
+</div>
+
+<dl class="defs">
+<div class="def"><dt>Recession</dt><dd>Two consecutive quarters of declining GDP. A natural part of the business cycle.</dd></div>
+<div class="def"><dt>Business cycle</dt><dd>The expansion and contraction of national economic activity over years, with regularity. Booms and busts.</dd></div>
+<div class="def"><dt>Depression</dt><dd>An unusually long or deep recession, such as the United States 1929&ndash;1932.</dd></div>
+<div class="def"><dt>Labour force</dt><dd>People 15 and over who have a job or business, plus those without work who are actively seeking it.</dd></div>
+<div class="def"><dt>Unemployment rate</dt><dd>The percentage of the labour force actively seeking work but unable to find it.</dd></div>
+<div class="def"><dt>Under-employment</dt><dd>Working, but not at full potential. Not counted in unemployment.</dd></div>
+<div class="def"><dt>Discouraged workers</dt><dd>People who gave up looking, judging their chances too remote. Also not counted.</dd></div>
+<div class="def"><dt>Working poor</dt><dd>Employed, but on incomes too low to save or afford necessities.</dd></div>
+</dl>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; the trap in the unemployment rate</span>
+  <p>The rate counts only people <em>actively seeking</em> work. So both the
+  <strong>under-employed</strong> and <strong>discouraged workers</strong> are invisible in it, and
+  the headline number therefore <em>understates</em> the problem. If a case question asks why
+  unemployment looks fine but the economy does not, that is the answer.</p>
+</div>
+</div>
+</section>
+
+<!-- ============ UNIT 7 ============ -->
+<section class="unit" id="u7">
+<div class="unit-n"><b>07</b>Entrepreneurs</div>
+<div class="unit-body">
+<h2>Who starts businesses</h2>
+<p class="oneidea">Entrepreneurship is a temperament, not a job title. Three psychological traits,
+one theory of motivation, one theory of control, and three kinds of inheritance.</p>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; the three traits</span>
+  <span class="key">ART</span>
+  <div class="expand">
+    <div><span>A</span><div><strong>Achievement</strong> &mdash; a need to achieve challenging goals</div></div>
+    <div><span>R</span><div><strong>Risk-taking propensity</strong> &mdash; belief in one's ability to influence affairs</div></div>
+    <div><span>T</span><div><strong>Tolerance of ambiguity</strong> &mdash; willingness to sit with uncertainty</div></div>
+  </div>
+  <p style="margin-top:.7rem">Entrepreneurship is an <strong>art</strong>. The three traits reinforce
+  each other: high achievement need correlates with internal locus of control, which correlates with
+  higher risk-taking.</p>
+</div>
+
+<h3>McClelland's theory of needs</h3>
+<p>We are each driven by a mix of three motivational needs, which shape personality, behaviour and
+career choice.</p>
+<div class="grid2">
+  <div class="card"><h4>nPow &middot; Power</h4><p>Motivated by authority and influence. Chooses careers with status and prestige: senior managers, military officers, politicians.</p></div>
+  <div class="card"><h4>nAff &middot; Affiliation</h4><p>Motivated by friendly relationships and interaction. Teachers, doctors and nurses, religious leaders, coaches, team roles.</p></div>
+  <div class="card"><h4>nAch &middot; Achievement</h4><p>Motivated by personal accomplishment, sets and attains challenging goals. Athletes, scholars, <strong>entrepreneurs</strong>.</p></div>
+</div>
+<p>For achievement-motivated people specifically: the sense of achievement matters more than
+financial reward, accomplishment gives more satisfaction than praise, money is a
+<em>measurement</em> of success rather than the goal, and neither security nor status is a prime
+motivator.</p>
+
+<h3>Locus of control</h3>
+<div class="spectrum">
+<div class="sp-bar">
+  <div><b>Internal</b>Outcomes are shaped by my own behaviour, actions and effort.</div>
+  <div><b>External</b>Outcomes are the result of fate, luck or outside forces I cannot control.</div>
+</div>
+<div class="sp-ends"><span>Entrepreneurs cluster here</span><span></span></div>
+</div>
+<p>Rotter's theory, and everyone sits somewhere on the continuum. Internal locus means taking
+responsibility for successes and failures, learning from them, and trying again.</p>
+
+<div class="note warn">
+  <span class="lbl">A distinction the exam can test in one word</span>
+  <p><strong>Risk tolerance is not risk seeking.</strong> Risk tolerance treats new situations as
+  exciting and possibly desirable. Risk seeking is carelessness about consequences. Entrepreneurs are
+  not gamblers, they take <strong>calculated risks</strong>: undertaken after weighing advantages and
+  disadvantages and estimating the probability of outcomes. <em>Risk aversion</em> is the opposite
+  end, treating the new as threatening.</p>
+</div>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; the three inheritances</span>
+  <span class="key">EVE</span>
+  <div class="expand">
+    <div><span>E</span><div><strong>Entrepreneurial</strong> &mdash; characteristics and values absorbed from an entrepreneurial parent</div></div>
+    <div><span>V</span><div><strong>Vocational</strong> &mdash; job-related skills observed and learned from parents</div></div>
+    <div><span>E</span><div><strong>Economic</strong> &mdash; financial capital received to support starting a business</div></div>
+  </div>
+  <p style="margin-top:.7rem">About 80% of Canadian small business owners come from a family business
+  background.</p>
+</div>
+
+<h3>Two demographic findings worth quoting</h3>
+<ul class="tight">
+  <li><strong>Immigrants make strong entrepreneurs</strong>, and are both <em>pulled</em> (their
+  characteristics of self-confidence, reasonable risk-taking and high achievement need match the
+  entrepreneurial profile) and <em>pushed</em> (lacking local networks, Canadian experience and track
+  record, so enterprise becomes the available option). Most are <em>economic migrants</em>, moving to
+  improve their economic wellbeing.</li>
+  <li><strong>Entrepreneurs skew older.</strong> More than half of Canadian businesses are owned by
+  people over 50, and the highest rate of new business creation belongs to the 55&ndash;64 group.
+  Four reasons, all starting with C: <strong>capital, contacts, credibility, confidence</strong>.</li>
+</ul>
+
+<div class="note">
+  <span class="lbl">Sizes, since these are testable numbers</span>
+  <p><strong>Small</strong> is under 50 employees for services or under 100 for goods.
+  <strong>Medium</strong> is 100&ndash;499. <strong>Large</strong> is 500 or more.
+  <strong>SME</strong> covers small and medium together. There is no single official definition, and
+  other thresholds used include under $5M revenue, under $1M exports, under $500K profits.</p>
+</div>
+</div>
+</section>
+
+<!-- ============ UNIT 8 ============ -->
+<section class="unit" id="u8">
+<div class="unit-n"><b>08</b>Planning</div>
+<div class="unit-body">
+<h2>Planning the business</h2>
+<p class="oneidea">A business plan is the written document laying out everything that has to happen
+for the planned business to succeed. Writing one makes an entrepreneur six times more likely to
+actually start.</p>
+
+<h3>The owner's checklist, in order</h3>
+<div class="scroll">
+<table>
+<thead><tr><th class="num">#</th><th>Step</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td><strong>Choose a niche</strong></td><td>What will the business do, and who will it target? Assess your own experience, strengths and skills, then assess the target market and competitors.</td></tr>
+<tr><td class="num">2</td><td><strong>Write the business plan</strong></td><td>Think like a business, not just a service provider.</td></tr>
+<tr><td class="num">3</td><td><strong>Register as a legal entity</strong></td><td>Sole proprietorship, partnership or corporation. See unit 9.</td></tr>
+<tr><td class="num">4</td><td><strong>Fulfil other legal requirements</strong></td><td>Insurance, business bank account, bookkeeping. Agreements: business, independent contractor, NDA, non-compete, proposal, invoice.</td></tr>
+<tr><td class="num">5</td><td><strong>Build a marketing plan</strong></td><td>Existing network first, then industry engagement and networking, then be easy to find. Advertising last.</td></tr>
+<tr><td class="num">6</td><td><strong>Deliver great results</strong></td><td>Keep upskilling, ask for feedback often, optimise. Testimonials matter.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>The nine sections of a business plan</h3>
+<p>Grouped into three concerns, which is far easier to recall than nine separate headings.</p>
+<div class="grid2">
+  <div class="card"><h4>Framing</h4><p>Executive summary. Mission, vision and strategic objectives. Business and industry overview.</p></div>
+  <div class="card"><h4>The market</h4><p>Market analysis and competition. Sales and marketing plan.</p></div>
+  <div class="card"><h4>The people</h4><p>Ownership and management plan. Your credentials matter a great deal here.</p></div>
+  <div class="card"><h4>The resources</h4><p>Operating plan. Financial plan. Appendices and exhibits.</p></div>
+</div>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; why the plan exists</span>
+  <p>Two reasons, and a case question will want both. It proves the entrepreneur
+  <strong>is serious</strong>, and it proves they have <strong>done the research and the work</strong>.
+  That is why it is required for a pitch to investors or a bank loan, not just for the founder's own
+  benefit.</p>
+</div>
+</div>
+</section>
+
+<!-- ============ UNIT 9 ============ -->
+<section class="unit" id="u9">
+<div class="unit-n"><b>09</b>Structures</div>
+<div class="unit-body">
+<h2>The three legal structures</h2>
+<p class="oneidea">Everything about this unit turns on one axis: <strong>liability</strong>. Simple
+structures are easy and cheap and leave you personally exposed. The corporation is complex and
+expensive and puts a legal wall between you and the business.</p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>&nbsp;</th><th>Sole proprietorship</th><th>Partnership</th><th>Corporation</th></tr></thead>
+<tbody>
+<tr><td>Speed and cost of setup</td><td class="hi">Low</td><td class="hi">Low</td><td>High</td></tr>
+<tr><td><strong>Personal liability</strong></td><td>High</td><td>High</td><td class="hi">Low</td></tr>
+<tr><td>Tax breaks</td><td>Low</td><td>Low</td><td class="hi">High</td></tr>
+<tr><td>Loan and investment access</td><td>Low</td><td>Low</td><td class="hi">High</td></tr>
+<tr><td>Annual paperwork</td><td class="hi">Low</td><td class="hi">Low</td><td>High</td></tr>
+<tr><td>Ease of ownership transfer</td><td>Low</td><td>Low</td><td class="hi">High</td></tr>
+<tr><td>Level of control</td><td class="hi">High</td><td>Medium</td><td>Low</td></tr>
+<tr><td>Ease of dissolution</td><td class="hi">High</td><td>Medium</td><td>Low</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; read the table as one trade</span>
+  <p>You do not need to memorise 24 cells. Memorise the trade: <strong>as you move right, you give
+  up control and simplicity to buy protection and access to money.</strong> Sole proprietorship is
+  all control and all risk. Corporation is all protection and all paperwork. Partnership sits in the
+  middle on control and dissolution, and stays with the sole proprietor on liability.</p>
+  <p style="margin-top:.6rem">The two exceptions to the pattern, which is where MC questions live:
+  <strong>annual paperwork</strong> and <strong>setup cost</strong> run the opposite way to the other
+  benefits, because there the corporation is the <em>worse</em> option.</p>
+</div>
+
+<dl class="defs">
+<div class="def"><dt>Sole proprietorship</dt><dd>Directly owned by one person. Most common form of ownership. One owner, but can have many employees. Supplies all capital, makes all decisions, keeps all profit, pays all expenses and taxes, responsible for all debts.</dd></div>
+<div class="def"><dt>Liability</dt><dd>The legal and financial responsibility for something.</dd></div>
+<div class="def"><dt>Personal liability</dt><dd>The owner's personal responsibility to pay the business's costs and settle its obligations.</dd></div>
+<div class="def"><dt>Unlimited liability</dt><dd>No cap on what the owner might pay. Not limited by the size of their investment in the business.</dd></div>
+<div class="def"><dt>General partnership</dt><dd>Directly owned by two or more individuals who agree to act together.</dd></div>
+<div class="def"><dt>Joint and several liability</dt><dd>An obligation made by <em>one</em> partner is binding on <em>all</em> the others. Know and trust your partners.</dd></div>
+<div class="def"><dt>Partnership agreement</dt><dd>Document spelling out obligations: capital contributed, decision and voting power, roles, pay, profit division, dispute resolution.</dd></div>
+<div class="def"><dt>Corporation</dt><dd>A legal entity created by an act of law to own and operate a business. From the Latin <em>corpus</em>, body.</dd></div>
+<div class="def"><dt>Limited liability</dt><dd>An individual's financial responsibility is limited to the capital they provided. Shareholders have limited liability, the corporation itself has unlimited liability.</dd></div>
+<div class="def"><dt>Share</dt><dd>An ownership stake, entitling the owner to a share of profits. Acquired by investing capital or as compensation for work.</dd></div>
+</dl>
+
+<h3>A corporation is an artificial person</h3>
+<p>That is not a metaphor, it is the legal mechanism. It has the same rights and duties as a person:
+to borrow and lend, buy and sell property, hire and fire, pay taxes, sue and be sued. It also exists
+permanently. The Japanese construction firm Kongō Gumi, founded in 578 CE, is the oldest company in
+the world.</p>
+
+<figure>
+<div class="plot">
+<svg viewBox="0 0 700 200" role="img" aria-label="Corporate governance chain: shareholders own, directors manage, officers work">
+  <g font-family="var(--mono)" font-size="12">
+    <rect x="30" y="20" width="180" height="60" rx="4" fill="var(--accent-soft)" stroke="var(--accent-line)"/>
+    <text x="52" y="46" fill="var(--accent)" font-weight="700">SHAREHOLDERS</text>
+    <text x="72" y="66" fill="var(--accent)" font-size="10.5">they OWN it</text>
+
+    <rect x="260" y="20" width="180" height="60" rx="4" fill="var(--accent-soft)" stroke="var(--accent-line)"/>
+    <text x="298" y="46" fill="var(--accent)" font-weight="700">DIRECTORS</text>
+    <text x="286" y="66" fill="var(--accent)" font-size="10.5">they MANAGE it</text>
+
+    <rect x="490" y="20" width="180" height="60" rx="4" fill="var(--accent-soft)" stroke="var(--accent-line)"/>
+    <text x="536" y="46" fill="var(--accent)" font-weight="700">OFFICERS</text>
+    <text x="518" y="66" fill="var(--accent)" font-size="10.5">they WORK for it</text>
+
+    <g stroke="var(--mark)" stroke-width="1.6" fill="none">
+      <path d="M210 50 L 252 50"/><path d="M440 50 L 482 50"/>
+    </g>
+    <g fill="var(--mark)" font-size="10.5">
+      <text x="196" y="106">elect</text><text x="430" y="106">appoint</text>
+    </g>
+    <g stroke="var(--mark)" stroke-width="1.6" fill="none" stroke-dasharray="3 3">
+      <path d="M231 58 L 231 100"/><path d="M461 58 L 461 100"/>
+    </g>
+  </g>
+  <g font-family="var(--mono)" font-size="10.5" fill="var(--ink-faint)">
+    <text x="30" y="150">Ownership and management are separated. Most shareholders neither manage nor work for the corporation,</text>
+    <text x="30" y="168">which is exactly how a founder can lose control of a company they started. See Steve Jobs, ousted from Apple in 1985.</text>
+  </g>
+</svg>
+</div>
+<figcaption>Shareholders elect directors, directors appoint officers. Learn the two verbs, they are
+what an MC question will swap.</figcaption>
+</figure>
+
+<p>Creating one takes five steps: choose a name, conduct a name search, complete the
+<em>articles of incorporation</em>, submit the paperwork and fee, then receive the
+<em>certificate of incorporation</em>. Corporations must legally carry a word or abbreviation after
+the name (Corp, Inc, Ltd, Co) to signal limited liability. <strong>Private</strong> corporations are
+owned by a small closely connected group and do not offer shares publicly.
+<strong>Public</strong> corporations sell shares to the general public, and Canada has about 4,200
+of them.</p>
+</div>
+</section>
+
+<!-- ============ UNIT 10 ============ -->
+<section class="unit" id="u10">
+<div class="unit-n"><b>10</b>Financing</div>
+<div class="unit-body">
+<h2>Paying for it</h2>
+<p class="oneidea">Four sources of capital. The way to remember them is by what each one costs you,
+because no source is free and the price is different every time.</p>
+
+<div class="hook">
+  <span class="lbl">Memory hook &middot; four sources, four prices</span>
+  <div class="expand" style="font-size:.95rem">
+    <div><span>1</span><div><strong>Founder equity</strong> &mdash; your own money. Costs you your savings.</div></div>
+    <div><span>2</span><div><strong>Grants</strong> &mdash; free money. Costs you paperwork and a perfect fit.</div></div>
+    <div><span>3</span><div><strong>Debt</strong> &mdash; borrowed money. Costs you interest, and it must be repaid on time.</div></div>
+    <div><span>4</span><div><strong>Investor equity</strong> &mdash; sold money. Costs you <em>control</em>.</div></div>
+  </div>
+  <p style="margin-top:.7rem">Ordered by how much of the company you keep. Grants are the only source
+  that costs neither ownership nor repayment, which is exactly why they are scarce and
+  competitive.</p>
+</div>
+
+<div class="scroll">
+<table>
+<thead><tr><th>&nbsp;</th><th>Equity capital</th><th>Debt capital</th></tr></thead>
+<tbody>
+<tr><td>Money in</td><td>Given</td><td>Lent</td></tr>
+<tr><td>Money out</td><td class="hi">Never repaid</td><td>Must be repaid</td></tr>
+<tr><td>Voting rights</td><td>Investors get votes</td><td class="hi">Lenders get none</td></tr>
+<tr><td>Ownership</td><td>Investors get ownership</td><td class="hi">Lenders get none</td></tr>
+<tr><td>Return to provider</td><td>A share of profit</td><td>Interest</td></tr>
+</tbody>
+</table>
+</div>
+
+<dl class="defs">
+<div class="def"><dt>Finance</dt><dd>All the activities involved in locating, collecting, organising and distributing capital.</dd></div>
+<div class="def"><dt>Equity capital</dt><dd>Money put into a business in exchange for a share of ownership, decision-making and profits.</dd></div>
+<div class="def"><dt>Debt capital</dt><dd>Money lent to a business. Must be repaid, usually with interest.</dd></div>
+<div class="def"><dt>Interest</dt><dd>The fee paid to the lender for the right to use the money until it is repaid.</dd></div>
+<div class="def"><dt>Dilution</dt><dd>A decrease in the proportion owned by existing shareholders after new investors put equity in.</dd></div>
+<div class="def"><dt>Capital structure</dt><dd>The combination of equity and debt a business chooses to finance operations and growth.</dd></div>
+<div class="def"><dt>Investor</dt><dd>Provides capital expecting the enterprise to grow, profit, and return more capital later.</dd></div>
+<div class="def"><dt>Grant</dt><dd>A sum awarded, often by government or a non-profit, to support specific activities. Not repaid, does not dilute ownership.</dd></div>
+</dl>
+
+<p>Investor equity comes in a rough order as the business grows: <strong>friends and family</strong>
+first, then <strong>angel investors</strong>, then <strong>venture capital</strong>. Expect to raise
+more than once.</p>
+
+<div class="note warn">
+  <span class="lbl">The trade-off the exam will ask you to argue</span>
+  <p><strong>Equity</strong> gives you capital plus the investor's skills and expertise, and costs
+  you equity, decision-making power and ultimately <em>control</em>. <strong>Debt</strong> gives you
+  capital with no dilution at all, and costs you repayment with interest on a schedule, more risk if
+  you cannot pay, and it is harder for young owners to access. One buys help at the price of control,
+  the other keeps control at the price of obligation.</p>
+</div>
+</div>
+</section>
+
+<hr>
+
+<!-- ============ HOOKS ============ -->
+<section id="hooks">
+<h2>Every hook on one screen</h2>
+<p class="col">The last thing to read before you walk in. If you can expand all of these from the
+letters, you have the recall half of the paper.</p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Hook</th><th>Unit</th><th>Expands to</th></tr></thead>
+<tbody>
+<tr><td class="num hi"><strong>CELL</strong></td><td class="num">3</td><td>Capital, Entrepreneurship, Land (natural resources), Labour. The four factors of production.</td></tr>
+<tr><td class="num hi"><strong>IHIP</strong></td><td class="num">2</td><td>Intangible, Heterogeneous, Inseparable, Perishable. Services. Goods are the inverse of all four.</td></tr>
+<tr><td class="num hi"><strong>IGMD</strong></td><td class="num">2</td><td>Introduction, Growth, Maturity, Decline. Product life cycle. Profit peaks at maturity.</td></tr>
+<tr><td class="num hi"><strong>ART</strong></td><td class="num">7</td><td>Achievement need, Risk-taking propensity, Tolerance of ambiguity. Entrepreneurial traits.</td></tr>
+<tr><td class="num hi"><strong>EVE</strong></td><td class="num">7</td><td>Entrepreneurial, Vocational, Economic. The three inheritances.</td></tr>
+<tr><td class="num hi"><strong>4 C's</strong></td><td class="num">7</td><td>Capital, contacts, credibility, confidence. Why older entrepreneurs succeed.</td></tr>
+<tr><td class="num hi"><strong>nAch nAff nPow</strong></td><td class="num">7</td><td>Achievement, Affiliation, Power. McClelland. Entrepreneurs are nAch.</td></tr>
+<tr><td class="num hi"><strong>Own, manage, work</strong></td><td class="num">9</td><td>Shareholders own, directors manage, officers work. Shareholders elect, directors appoint.</td></tr>
+<tr><td class="num hi"><strong>Mine, free, borrowed, sold</strong></td><td class="num">10</td><td>Founder equity, grants, debt, investor equity. Ordered by how much you keep.</td></tr>
+<tr><td class="num hi"><strong>0 equal, 1 unequal</strong></td><td class="num">6</td><td>Gini coefficient direction. No calculation required.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<hr>
+
+<!-- ============ DRILL ============ -->
+<section id="drill">
+<h2>Drill</h2>
+<p class="col">Ten multiple choice in the style of the paper, then the method for the short answer
+half. Answers are hidden until you click. Do not click early.</p>
+
+<h3>Multiple choice</h3>
+
+<details class="q"><summary>1. A campus club charges membership fees and pays a part-time coordinator. It is not a business because it</summary>
+<ul class="opts">
+<li data-k="A">collects no revenue</li>
+<li data-k="B">has no employees</li>
+<li data-k="C" class="right">does not exist for the purpose of making a profit</li>
+<li data-k="D">is not registered with the government</li>
+</ul>
+<p><strong>C.</strong> Organisations can charge for things and can pay people. The profit
+<em>motive</em> is the only line between a business and another kind of organisation. A and B are
+factually wrong about this club, and D is irrelevant.</p></details>
+
+<details class="q"><summary>2. An airline cannot sell an empty seat after the plane departs. This illustrates</summary>
+<ul class="opts">
+<li data-k="A">variability</li>
+<li data-k="B" class="right">perishability</li>
+<li data-k="C">intangibility</li>
+<li data-k="D">inseparability</li>
+</ul>
+<p><strong>B.</strong> Perishability is the inability to store the product for later sale.
+Variability would be no two flights being identical, intangibility that you cannot touch the
+service, inseparability that it is produced and consumed at once. All four are true of the airline,
+which is why you must read what the stem actually describes.</p></details>
+
+<details class="q"><summary>3. A product's sales are still climbing, marketing spend has fallen, and profit is at its highest point ever. Which stage?</summary>
+<ul class="opts">
+<li data-k="A">Introduction</li>
+<li data-k="B">Growth</li>
+<li data-k="C" class="right">Maturity</li>
+<li data-k="D">Decline</li>
+</ul>
+<p><strong>C.</strong> The giveaway is <em>profit at its highest</em> combined with <em>lower
+marketing spend</em>. Growth is where a product first turns a profit, maturity is where profit peaks
+because awareness is already high so you stop paying to build it.</p></details>
+
+<details class="q"><summary>4. A grocery chain replaces ten cashiers with self-checkout machines. This is best described as</summary>
+<ul class="opts">
+<li data-k="A">economies of scale</li>
+<li data-k="B" class="right">factor substitution</li>
+<li data-k="C">factor intensity</li>
+<li data-k="D">the information revolution</li>
+</ul>
+<p><strong>B.</strong> Substituting capital for labour so products can be provided more cheaply.
+Factor intensity would be describing which factor dominates the business overall. Economies of scale
+is cost falling as volume rises, a different mechanism.</p></details>
+
+<details class="q"><summary>5. In Canada, the LCBO's exclusive position is an example of</summary>
+<ul class="opts">
+<li data-k="A">a natural monopoly</li>
+<li data-k="B" class="right">a legislated monopoly</li>
+<li data-k="C">an oligopoly</li>
+<li data-k="D">monopolistic competition</li>
+</ul>
+<p><strong>B.</strong> The exclusivity was granted by government legislation, not earned through
+size or efficiency. A natural monopoly is one that would always be cheaper than rivals for reasons
+of scale, efficiency or exclusive access.</p></details>
+
+<details class="q"><summary>6. A country's GDP rose 3% while its population rose 5%. The most accurate statement is</summary>
+<ul class="opts">
+<li data-k="A">prosperity increased because GDP grew</li>
+<li data-k="B" class="right">GDP per capita fell, so the average citizen is worse off</li>
+<li data-k="C">the country entered a recession</li>
+<li data-k="D">the Gini coefficient must have risen</li>
+</ul>
+<p><strong>B.</strong> This is precisely why GDP per capita exists as a separate measure from GDP
+growth. C is wrong because a recession requires two consecutive quarters of <em>declining</em> GDP,
+and GDP grew. D is unrelated, distribution is a different question from average.</p></details>
+
+<details class="q"><summary>7. Two partners run a design firm. One signs an expensive lease without telling the other. The other partner is</summary>
+<ul class="opts">
+<li data-k="A">not liable, since they did not sign</li>
+<li data-k="B">liable only up to their investment</li>
+<li data-k="C" class="right">fully liable, because of joint and several liability</li>
+<li data-k="D">liable only if a partnership agreement exists</li>
+</ul>
+<p><strong>C.</strong> An obligation made by one partner binds all of them, and liability is
+unlimited so it is not capped at the investment. B describes limited liability, which is a feature
+of corporations. A partnership agreement governs the partners' dealings with each other, it does not
+protect them from a third party.</p></details>
+
+<details class="q"><summary>8. Shareholders of a corporation</summary>
+<ul class="opts">
+<li data-k="A">appoint the officers directly</li>
+<li data-k="B" class="right">elect the directors, who appoint the officers</li>
+<li data-k="C">must also work for the corporation</li>
+<li data-k="D">have unlimited liability for its debts</li>
+</ul>
+<p><strong>B.</strong> Learn the two verbs: shareholders <em>elect</em>, directors
+<em>appoint</em>. C is wrong because ownership and work are separated, which is the whole point of
+the structure. D reverses the rule, shareholders have <em>limited</em> liability.</p></details>
+
+<details class="q"><summary>9. A founder takes $500,000 from an angel investor for 25% of the company. The most significant cost to the founder is</summary>
+<ul class="opts">
+<li data-k="A">interest payments</li>
+<li data-k="B">the repayment schedule</li>
+<li data-k="C" class="right">dilution of ownership and loss of decision-making control</li>
+<li data-k="D">the loss of limited liability</li>
+</ul>
+<p><strong>C.</strong> A and B are the costs of <em>debt</em>, not equity, and equity is never
+repaid. Equity's price is control. D is irrelevant, taking investment does not change the liability
+structure.</p></details>
+
+<details class="q"><summary>10. Country X has a Gini coefficient of 0.25 and country Y has 0.55. Which is true?</summary>
+<ul class="opts">
+<li data-k="A">X is wealthier than Y</li>
+<li data-k="B" class="right">income is more equally distributed in X than in Y</li>
+<li data-k="C">X has higher GDP per capita</li>
+<li data-k="D">Y has lower unemployment</li>
+</ul>
+<p><strong>B.</strong> Closer to 0 means more equal. Note carefully that the Gini says
+<em>nothing</em> about how wealthy a country is, only how evenly what it has is spread. A and C
+confuse distribution with prosperity, which is exactly the trap.</p></details>
+
+<h3>The short answer half, which is worth the same 20 marks</h3>
+
+<div class="note">
+  <span class="lbl">The method</span>
+  <p>Bullet points only, and the question will be built on a case. Every answer should do three
+  things, in this order, because that is where the marks sit:</p>
+  <ol class="tight" style="margin-top:.6rem">
+    <li><strong>Name the concept.</strong> Use the course's exact term. "This is monopolistic
+    competition." One bullet.</li>
+    <li><strong>Define it in a clause.</strong> Enough to prove you know it, not a paragraph.</li>
+    <li><strong>Apply it to the actual company in the case</strong>, quoting the specific details
+    given. This is the part people skip, and it is usually worth more than the other two
+    combined.</li>
+  </ol>
+  <p style="margin-top:.7rem">The single most common failure is writing a correct general essay
+  about a concept that never mentions the business in the scenario. If the case names a coffee shop
+  with three competitors and a price increase, your answer has to talk about that coffee shop, those
+  competitors and that price.</p>
+</div>
+
+<details class="q"><summary>Worked example &mdash; a case in the style of the paper, with a model answer</summary>
+<p><em>Maya runs a small bakery in a neighbourhood with four other bakeries. Hers is the only one
+with a recognisable logo, a name people repeat, and a signature sourdough people travel for. She
+charges 20% more than the others and still sells out. She now wants to open three more locations and
+needs $400,000. She has $60,000 saved and no assets to secure a loan against.</em></p>
+<p><strong>a) Identify the market structure and justify it.</strong></p>
+<ul class="tight">
+<li>Monopolistic competition.</li>
+<li>Many sellers with low barriers to entry, but a small number differentiate through branding and
+can charge more.</li>
+<li>Applies here: five bakeries in one neighbourhood is many sellers with low barriers, but Maya has
+a recognisable logo and a signature product, which is <em>differentiation</em> and
+<em>branding</em>.</li>
+<li>The evidence is that she charges 20% more and still sells out, which is pricing power that
+perfect competition would not allow.</li>
+</ul>
+<p><strong>b) Recommend a financing route and state the trade-off.</strong></p>
+<ul class="tight">
+<li>She has $60,000 of founder equity, leaving $340,000 to raise.</li>
+<li>Debt is difficult: no assets to secure against, and the course notes younger owners have less
+access to debt capital.</li>
+<li>So investor equity, likely angel investors given the amount and stage.</li>
+<li>The trade-off: she gets the capital plus the investor's skills and expertise, but accepts
+dilution and loss of decision-making power, so less control over the brand that is currently the
+source of her pricing power.</li>
+<li>She should also check grants, since they neither dilute nor require repayment, but they are
+limited in source and must be a perfect fit.</li>
+</ul>
+<p style="margin-top:.8rem"><strong>Why this scores.</strong> Every bullet either names a course
+concept or ties one to a detail from the scenario. Notice how often the words "Maya", "bakery",
+"$60,000" and "20%" appear. An answer that defined monopolistic competition perfectly and never
+mentioned the bakery would lose most of the application marks.</p>
+</details>
+</section>
+
+<footer class="wrap" style="padding-left:0;padding-right:0">
+<p>Study notes written from scratch for the MGTA01 final on August 13. Concepts are standard
+introduction-to-business material; nothing here reproduces lecture slides, and the wording,
+groupings, mnemonics, diagrams and practice questions are original. Verify anything that matters
+against your own lecture notes and the textbook before relying on it.</p>
+</footer>
+
+</div>
+
+</body>
+</html>
